@@ -1,0 +1,148 @@
+/* ---------- 基础：变量、重置、通用组件 ---------- */
+:root {
+  --font-serif: "STSong", "华文宋体", "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
+  --font-kai: "STKaiti", "华文楷体", "KaiTi", "Kaiti SC", serif;
+  --font-li: "STLiti", "华文隶书", "LiSu", "STXihei", serif;
+  --font-sans: "DengXian", "等线", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --shadow-1: 0 1px 2px rgba(40, 30, 15, .06), 0 6px 18px rgba(40, 30, 15, .06);
+  --shadow-2: 0 10px 40px rgba(30, 20, 8, .16), 0 2px 8px rgba(30, 20, 8, .08);
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --dur: .38s;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  transition: background-color .8s var(--ease), color .8s var(--ease);
+}
+
+#app { height: 100vh; height: 100dvh; }
+
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+::selection { background: rgba(200, 120, 60, .24); }
+
+/* 滚动条 */
+.scroll { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: currentColor; opacity: .18; border-radius: 9px; border: 3px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-track { background: transparent; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- 通用按钮 ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: .45em;
+  padding: .52em .95em;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: .04em;
+  line-height: 1.2;
+  transition: all .22s var(--ease);
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn[disabled] { opacity: .4; pointer-events: none; }
+.btn svg { width: 15px; height: 15px; flex: none; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: .35em;
+  padding: .28em .7em; border-radius: 999px;
+  font-family: var(--font-sans); font-size: 11.5px; letter-spacing: .06em;
+  border: 1px solid currentColor; opacity: .7;
+  transition: opacity .2s;
+}
+.chip:hover { opacity: 1; }
+.chip.on { opacity: 1; }
+
+/* ---------- 输入 ---------- */
+.field {
+  width: 100%; padding: .62em .8em;
+  border-radius: var(--r-sm);
+  font-family: var(--font-sans); font-size: 13.5px;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+  resize: vertical;
+}
+
+/* ---------- 弹层 ---------- */
+.modal-mask {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4vh 4vw;
+  animation: maskIn .3s var(--ease);
+}
+@keyframes maskIn { from { opacity: 0 } to { opacity: 1 } }
+.modal-x {
+  width: min(720px, 100%); max-height: 92vh;
+  border-radius: var(--r-lg);
+  animation: modalIn .42s var(--ease);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+@keyframes modalIn { from { opacity: 0; transform: translateY(14px) scale(.985) } to { opacity: 1; transform: none } }
+.modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 1.4rem .9rem; flex: none;
+}
+.modal-title { font-size: 15px; letter-spacing: .1em; }
+.modal-body { padding: 0 1.4rem 1.4rem; overflow-y: auto; }
+.modal-close {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 16px; opacity: .5;
+  transition: opacity .2s, background .2s;
+}
+.modal-close:hover { opacity: 1; }
+
+/* ---------- Toast ---------- */
+#layer-toast {
+  position: fixed; left: 50%; bottom: 6vh; transform: translateX(-50%);
+  z-index: 200; display: flex; flex-direction: column; gap: .5rem;
+  align-items: center; pointer-events: none;
+}
+.toast {
+  padding: .6em 1.1em; border-radius: 999px;
+  font-family: var(--font-sans); font-size: 13px; letter-spacing: .04em;
+  animation: toastIn .35s var(--ease);
+  backdrop-filter: blur(12px);
+}
+@keyframes toastIn { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+
+/* ---------- 空状态 ---------- */
+.empty {
+  display: grid; place-items: center; gap: 1rem;
+  padding: 12vh 2rem; text-align: center;
+  font-family: var(--font-kai); font-size: 15px; line-height: 2;
+}
+.empty .big { font-size: 26px; letter-spacing: .3em; opacity: .8; }
+
+/* ---------- 载入 ---------- */
+.skeleton {
+  background: linear-gradient(90deg, currentColor 0%, transparent 50%, currentColor 100%);
+  background-size: 200% 100%; opacity: .07; border-radius: var(--r-sm);
+  animation: shimmer 1.4s infinite linear;
+}
+@keyframes shimmer { from { background-position: 200% 0 } to { background-position: 0 0 } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

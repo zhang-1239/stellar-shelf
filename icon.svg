@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Stellar Shelf">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f5d8a0" stop-opacity=".95"/>
+      <stop offset="55%" stop-color="#c9a06a" stop-opacity=".35"/>
+      <stop offset="100%" stop-color="#0a0b12" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6e7c6"/>
+      <stop offset="100%" stop-color="#c08f52"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0a0b12"/>
+  <circle cx="32" cy="30" r="26" fill="url(#glow)"/>
+  <g fill="none" stroke="#f0dfbc" stroke-opacity=".55" stroke-width="1">
+    <path d="M14 42 L24 30 L40 34 L50 20"/>
+  </g>
+  <g fill="#f7e9c8">
+    <circle cx="14" cy="42" r="2.1"/>
+    <circle cx="24" cy="30" r="2.6"/>
+    <circle cx="40" cy="34" r="1.7"/>
+    <circle cx="50" cy="20" r="2.3"/>
+  </g>
+  <g transform="translate(27.5 27)">
+    <path d="M0 2.2 C1.8 .9 4.2 .9 6 1.8 L6 12.6 C4.2 11.7 1.8 11.7 0 13 Z" fill="url(#spine)" opacity=".96"/>
+    <path d="M7.2 1.8 C9 0.9 11.4 0.9 13.2 2.2 L13.2 13 C11.4 11.7 9 11.7 7.2 12.6 Z" fill="url(#spine)" opacity=".8"/>
+  </g>
+</svg>

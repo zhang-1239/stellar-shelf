@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "title": "Stellar Shelf",
+    "description": "A private bookshelf: read, finish books, keep excerpts and notes, and drift through a first-person sea of books."
+  },
+  "panel": {
+    "title": "Stellar Shelf",
+    "openInBrowser": "Open in browser",
+    "starting": "Lighting the shelf…",
+    "offline": "The local bookshelf service is not running.",
+    "retry": "Retry"
+  }
+}

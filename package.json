@@ -1,0 +1,49 @@
+{
+  "name": "@zhangxij/stellar-shelf",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "私人书架：读、标记、摘录与笔记，以及第一人称的星海书库。",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "server/**",
+    "public/**"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "anynum": "^1.0.1",
+    "busboy": "^1.6.0",
+    "fast-xml-parser": "^4.5.1",
+    "mammoth": "^1.9.0",
+    "opencc-js": "^1.0.5",
+    "pdfjs-dist": "^4.10.38",
+    "streamsearch": "^1.1.0",
+    "strnum": "^2.5.1"
+  }
+}
